@@ -14,18 +14,39 @@ const Income = (props) => {
         return income.date.getFullYear().toString()=== filteredYear;
     })
 
+
+const [isSearching, setIsSearching] = useState(false);
+const [searchTerm, setSearchTerm] = useState("");
+
+const searchingIncome = filteredIncome.filter((income)=>{
+    return income.description.toLowerCase().includes(searchTerm);
+})
+
+const searchFunction = event =>{
+    setIsSearching(true);
+    setSearchTerm(event.target.value);
+}
 return (
-    <div>
     <Card className ="income">
-        <div className="title">Income</div>
+        <div className="title">Income
+        <input className type="text" placeholder={"search"} value={searchTerm} onChange={searchFunction}></input>
+        </div>
         <ExpensesFilter 
          onChangeFilter={filterChangedHandler}
          selected={filteredYear}/>
+         
+{!isSearching && 
+        <div>
         <ExpensesChart expenses={filteredIncome}/>
         <ExpensesList items={filteredIncome} removeItem={props.removeItem}/>
-        
+        </div>}
+{isSearching && 
+        <div>
+        <ExpensesChart expenses={searchingIncome}/>
+        <ExpensesList items={searchingIncome} removeItem={props.removeItem}/>
+        </div>}
+
     </Card>
-    </div>
 );
 }
 export default Income;

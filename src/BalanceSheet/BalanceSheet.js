@@ -28,7 +28,7 @@ const BalanceSheet = (props) =>{
     )
     let balanceBar = totalExpense+totalIncome;
     let balanceBarLength="0%"
-    let balanceBarInner="blue"
+    let balanceBarInner="#ADD8E6"
     if(balanceBar>0){
     balanceBarInner="green"
      balanceBarLength = Math.round((totalExpense/balanceBar)*100)+"%";
@@ -55,8 +55,7 @@ const BalanceSheet = (props) =>{
             { filteredIncome.map((element,index) => { return (<div className="incomeList" key={index}>{element.title} <span>₱{element.amount}</span></div>)
 
             })}
-            <div className="pair balance">Total Balance: <div style={{color: "blue"}}>₱{totalBalance} </div></div>
-
+            <div className="pair balance">Total Balance: <div style={{color: "#ADD8E6"}}>₱{totalBalance} </div></div>
         </Card>
     )
     

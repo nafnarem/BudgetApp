@@ -11,6 +11,10 @@ const TransactionForm = (props) =>{
     const amountChangedHandler = (event) =>{
         setEnteredAmount(event.target.value);
     };
+    const [enteredDescription, setEnteredDescription] = useState("");
+    const descriptionChangedHandler = (event) => {
+        setEnteredDescription(event.target.value);
+    };
     const [enteredDate, setEnteredDate] = useState("");
     const dateChangedHandler = (event) =>{
         setEnteredDate(event.target.value);
@@ -26,6 +30,7 @@ const TransactionForm = (props) =>{
             title: enteredTitle,
             amount: Number(enteredAmount),
             date: new Date(enteredDate),
+            description: enteredDescription,
             transactionType: selectedTransactionType
         };
 
@@ -33,8 +38,8 @@ const TransactionForm = (props) =>{
     setEnteredTitle("");
     setEnteredDate("");
     setEnteredAmount("");
-    };
-
+    setEnteredDescription("");
+    }
 return (
 <form onSubmit={submitHandler}>
     <div className="new-transaction__controls">
@@ -45,6 +50,11 @@ return (
         <div className="new-transaction__control">
             <label>Amount</label>
             <input required type="number" min="0.01" step="0.01" value={enteredAmount} onChange={amountChangedHandler}></input>
+        </div>
+
+        <div className="new-transaction__control">
+            <label>Description</label>
+            <input required type="text" value={enteredDescription} onChange={descriptionChangedHandler}></input>
         </div>
         <div className="new-transaction__control">
             <label>Date</label>

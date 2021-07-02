@@ -20,10 +20,12 @@
     max-width: 100%;
   }
   .new-transaction__actions {
-    text-align: right;
+    text-align: center;
   }
   .new-transaction {
-    background-color: #a892ee;
+
+    background-color: #987456;
+
     padding: 1rem;
     margin: 2rem auto;
     width: 30rem;
@@ -37,14 +39,15 @@
     cursor: pointer;
     padding: 1rem 2rem;
     border: 1px solid #40005d;
-    background-color: #40005d;
-    color: white;
+    background-color: #fafae0;
+    color: black;
+    font-size: larger;
     border-radius: 12px;
     margin-right: 1rem;
   }
   .new-transaction button:hover,
   .new-transaction button:active {
-    background-color: #510674;
+    background-color: #b29277;
     border-color: #510674;
   }
   .new-transaction button.alternative {

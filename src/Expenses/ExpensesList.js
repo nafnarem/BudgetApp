@@ -9,6 +9,7 @@ const ExpensesList = (props) => {
                 title= {item.title}
                 date = {item.date}
                 amount = {item.amount}
+                description = {item.description}
                 />
             ))}
             {props.items.length<1 && <div style={{textAlign: "center", color:"white"}}>No transactions</div>}

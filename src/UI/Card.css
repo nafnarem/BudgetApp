@@ -2,6 +2,7 @@
 .card {
     border-radius: 18px;
     box-shadow: 0 1px 8px rgba(0,0,0,0.25);
-    width: auto;
+    margin-left:auto;
+    margin-right:auto;
   }
   
