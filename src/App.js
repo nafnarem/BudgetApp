@@ -60,6 +60,29 @@ const App = () => {
     
   }
 
+  const [detailsExpense, setDetailsExpense] = useState("Show Detailed Expenses");
+  const [detailsIncome, setDetailsIncome] = useState("Show Detailed Expenses");
+    
+
+  const [displayIncome, setDisplayIncome] = useState(false);
+  const displayIncomeHandler = () =>{
+    if(displayIncome===true)
+    {setDisplayIncome(false)
+    setDetailsIncome("Show Detailed Income")}
+    else{setDisplayIncome(true)
+      setDetailsIncome("Hide Detailed Income")}
+      
+  }
+  const [displayExpense, setDisplayExpense] = useState(false);
+  const displayExpenseHandler = () =>{
+    if(displayExpense===true){
+
+      setDisplayExpense(false)
+      setDetailsExpense("Show Detailed Expenses")
+    }
+    else {setDisplayExpense(true)
+    setDetailsExpense("Hide Detailed Expenses")}
+  }
   const removeExpense = (title) => {
       let newItems = expenses.filter((item)=> item.title !== title);
       setExpenses(newItems);
@@ -71,16 +94,16 @@ const App = () => {
 }
 
 
-
   return <div className="App">
 
-    <BalanceSheet expenses= {expenses} income = {income}/>
+    <BalanceSheet expenses= {expenses} income = {income} />
+
+
     <NewTransaction onAddIncome={addIncomeHandler} onAddExpense={addExpenseHandler}/>
+    <div className="Stack details"><button onClick={displayExpenseHandler}>{detailsExpense}</button><button onClick={displayIncomeHandler}>{detailsIncome}</button></div>
     <div className="Stack">
-    <Expenses expenses = {expenses} removeItem={removeExpense}/>
-    <Income income = {income} removeItem={removeIncome}/>
-    </div>
-    <div className="Stack">
+    {displayExpense && <Expenses expenses = {expenses} removeItem={removeExpense}/>}
+    {displayIncome &&<Income income = {income} removeItem={removeIncome}/>}
     </div>
   </div>;
 

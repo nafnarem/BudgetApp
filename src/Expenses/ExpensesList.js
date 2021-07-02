@@ -1,6 +1,5 @@
 import "./ExpensesList.css";
 import ExpenseItem from "./ExpenseItem";
-import { useState } from "react";
 const ExpensesList = (props) => {
     return (
         <ul className = "expenses-list">

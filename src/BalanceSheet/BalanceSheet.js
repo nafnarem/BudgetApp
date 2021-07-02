@@ -19,43 +19,46 @@ const BalanceSheet = (props) =>{
     let totalExpense=0;
     let totalIncome=0;
     let totalBalance=0;
-    filteredExpenses.map((expense)=>{
-        totalExpense+= expense.amount;
-    })
-    filteredIncome.map((incomeItem)=>{
-        totalIncome+= incomeItem.amount;
-    })
-
+    filteredExpenses.map((expense)=>(
+        totalExpense+= expense.amount
+    ))
+    filteredIncome.map((incomeItem)=>(
+        totalIncome+= incomeItem.amount
+    )
+    )
+    let balanceBar = totalExpense+totalIncome;
+    let balanceBarLength="0%"
+    let balanceBarInner="blue"
+    if(balanceBar>0){
+    balanceBarInner="green"
+     balanceBarLength = Math.round((totalExpense/balanceBar)*100)+"%";
     totalBalance = totalIncome- totalExpense;
-
-    if(totalBalance<0){
+    }
     return (
         
         <Card className="balanceSheet">
-            <div className="title">Balance Sheet</div>
             <ExpensesFilter 
          onChangeFilter={filterChangedHandler}
          selected={filteredYear}/>
-            <div><span>Total Expense: </span>{totalExpense}</div>
-            <div><span>Total Income: </span>{totalIncome}</div>
-            <div><span>Total Net Loss: </span>{totalBalance}</div>
+
+<div className="title">Balance Sheet</div>
+        <div className="balanceBarInner" style={{backgroundColor: balanceBarInner}}>
+            <div className="balanceBar" 
+        style={{ width : balanceBarLength}}></div>
+        </div>
+            <div className="pair"><div>Total Expense: </div><div style={{color: "#E2735B"}}>₱{totalExpense}</div>
+            </div>
+            { filteredExpenses.map((element,index) => { return (<div className="expenseList" key={index}>{element.title} <span className="alignRight">₱{element.amount}</span></div>)
+
+            })}
+            <div className="pair">Total Income: <div style={{color: "#44CF31"}}>₱{totalIncome}</div></div>
+            { filteredIncome.map((element,index) => { return (<div className="incomeList" key={index}>{element.title} <span>₱{element.amount}</span></div>)
+
+            })}
+            <div className="pair balance">Total Balance: <div style={{color: "blue"}}>₱{totalBalance} </div></div>
+
         </Card>
     )
-    }
-    if(totalBalance>=0){
-        return (
-            <Card className="balanceSheet">
-                <div className="title">Balance Sheet</div>
-                <ExpensesFilter 
-         onChangeFilter={filterChangedHandler}
-         selected={filteredYear}/>
-         
-                <div><span>Total Expense: </span>{totalExpense}</div>
-                <div><span>Total Income: </span>{totalIncome}</div>
-                <div><span>Total Net Gain: </span>{totalBalance}</div>
-            </Card>
-        )
-        }
-
+    
 }
 export default BalanceSheet;
